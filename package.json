@@ -4,7 +4,8 @@
   "description": "tactical weather app for final project",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/weather.html"
+    "start": "parcel src/weather.html",
+    "build": "parcel build src/weather.html"
   },
   "author": "Brenden Lyon",
   "dependencies": {
