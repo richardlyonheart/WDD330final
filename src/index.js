@@ -1,12 +1,12 @@
-type = module
-
+// Create and append an H1 element
 const helloworld = document.createElement('h1');
-helloworld.textContent = "hello world, weather stuff"
-
+helloworld.textContent = "hello world, weather stuff";
 document.getElementById('root').appendChild(helloworld);
+
 let map;
 let marker;
 
+// Exported function to initialize the map
 export async function initMap(lat, lon) {
     const location = { lat: lat, lng: lon };
     map = new google.maps.Map(document.getElementById('map'), {
@@ -19,7 +19,7 @@ export async function initMap(lat, lon) {
     });
 }
 
-// Function to increment and display the API call counter
+// Exported function to increment and display the API call counter
 export function incrementCounter() {
     const currentDate = new Date().toDateString();
     const storedDate = localStorage.getItem('apiCallDate');
@@ -35,12 +35,13 @@ export function incrementCounter() {
     displayCounter(counter);
 }
 
-// Function to display the counter value
+// Exported function to display the counter value
 export function displayCounter(counter) {
     const counterDisplay = document.getElementById('counterDisplay');
     counterDisplay.textContent = `API calls today: ${counter}`;
 }
 
+// Exported function to fetch and display the weather data by city name
 export async function getWeather() {
     incrementCounter(); // Increment the counter when the API is called
     const location = document.getElementById('location').value;
@@ -58,6 +59,7 @@ export async function getWeather() {
     }
 }
 
+// Exported function to fetch and display the weather data by current location
 export async function getWeatherByLocation() {
     incrementCounter(); // Increment the counter when the API is called
     if (navigator.geolocation) {
@@ -85,7 +87,8 @@ export async function getWeatherByLocation() {
     }
 }
 
-async function getWeatherByLatLon() {
+// Private function to fetch and display the weather data by latitude and longitude
+export async function getWeatherByLatLon() {
     incrementCounter(); // Increment the counter when the API is called
     const lat = document.getElementById('latitude').value;
     const lon = document.getElementById('longitude').value;
@@ -103,8 +106,8 @@ async function getWeatherByLatLon() {
     }
 }
 
-// Function to display the weather data
-function displayWeather(data) {
+// Private function to display the weather data
+export function displayWeather(data) {
     const result = document.getElementById('result');
     const weatherInfo = `
         <h2>${data.name}</h2>
@@ -120,8 +123,8 @@ function displayWeather(data) {
     document.getElementById('locationDisplay').textContent = data.name;
 }
 
-// Function to display the precipitation data
-function displayPrecipitation(data) {
+// Private function to display the precipitation data
+export function displayPrecipitation(data) {
     const precipitationContainer = document.getElementById('precipitation');
     const precipitationInfo = `
         <p>Precipitation: ${data.rain ? data.rain["1h"] : 0} mm/h</p>
@@ -133,8 +136,8 @@ function displayPrecipitation(data) {
     document.getElementById('precipitationContainer').classList.remove('hidden');
 }
 
-// Function to fetch and display the forecast data
-async function getForecast(lat, lon) {
+// Private function to fetch and display the forecast data
+export async function getForecast(lat, lon) {
     const apiKey = '414566a386a08cff91c0b2692629a943';
     const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
     const response = await fetch(url);
@@ -157,8 +160,8 @@ async function getForecast(lat, lon) {
     document.getElementById('forecastContainer').classList.remove('hidden');
 }
 
-// Function to adjust the width of the weather container
-function adjustWidth() {
+// Private function to adjust the width of the weather container
+export function adjustWidth() {
     const weatherContainer = document.getElementById('weather');
     weatherContainer.style.width = 'auto'; // Adjust as needed
 }
@@ -169,7 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
     displayCounter(counter);
 });
 
-function toggleTacticalMode() {
+// Private function to toggle tactical mode
+export function toggleTacticalMode() {
     document.body.classList.toggle('tactical-mode');
     document.getElementById('locationDisplayContainer').classList.toggle('tactical-mode');
     document.getElementById('weather').classList.toggle('tactical-mode');
