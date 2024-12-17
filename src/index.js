@@ -7,7 +7,7 @@ document.getElementById('root').appendChild(helloworld);
 let map;
 let marker;
 
-function initMap(lat, lon) {
+export async function initMap(lat, lon) {
     const location = { lat: lat, lng: lon };
     map = new google.maps.Map(document.getElementById('map'), {
         center: location,
@@ -20,7 +20,7 @@ function initMap(lat, lon) {
 }
 
 // Function to increment and display the API call counter
-function incrementCounter() {
+export function incrementCounter() {
     const currentDate = new Date().toDateString();
     const storedDate = localStorage.getItem('apiCallDate');
     let counter = localStorage.getItem('apiCallCounter');
@@ -36,12 +36,12 @@ function incrementCounter() {
 }
 
 // Function to display the counter value
-function displayCounter(counter) {
+export function displayCounter(counter) {
     const counterDisplay = document.getElementById('counterDisplay');
     counterDisplay.textContent = `API calls today: ${counter}`;
 }
 
-async function getWeather() {
+export async function getWeather() {
     incrementCounter(); // Increment the counter when the API is called
     const location = document.getElementById('location').value;
     const apiKey = '414566a386a08cff91c0b2692629a943';
@@ -58,7 +58,7 @@ async function getWeather() {
     }
 }
 
-async function getWeatherByLocation() {
+export async function getWeatherByLocation() {
     incrementCounter(); // Increment the counter when the API is called
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(async (position) => {
