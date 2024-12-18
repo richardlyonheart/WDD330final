@@ -1,7 +1,6 @@
-// Importing all exported functions from your original script
-import { initMap, incrementCounter, displayCounter, getWeather, getWeatherByLocation, getWeatherByLatLon, toggleTacticalMode } from './index.js';
+// src/main.js
 
-// Example usage of the imported functions
+import { initMap, incrementCounter, displayCounter, getWeather, getWeatherByLocation, getWeatherByLatLon, toggleTacticalMode } from './index.js';
 
 // Initialize the map with some default coordinates (latitude and longitude)
 document.addEventListener('DOMContentLoaded', () => {

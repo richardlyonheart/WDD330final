@@ -1,3 +1,5 @@
+// src/index.js
+
 // Create and append an H1 element
 const helloworld = document.createElement('h1');
 helloworld.textContent = "hello world, weather stuff";
@@ -87,7 +89,7 @@ export async function getWeatherByLocation() {
     }
 }
 
-// Private function to fetch and display the weather data by latitude and longitude
+// Exported function to fetch and display the weather data by latitude and longitude
 export async function getWeatherByLatLon() {
     incrementCounter(); // Increment the counter when the API is called
     const lat = document.getElementById('latitude').value;
@@ -172,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     displayCounter(counter);
 });
 
-// Private function to toggle tactical mode
+// Exported function to toggle tactical mode
 export function toggleTacticalMode() {
     document.body.classList.toggle('tactical-mode');
     document.getElementById('locationDisplayContainer').classList.toggle('tactical-mode');
