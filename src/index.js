@@ -1,4 +1,9 @@
-// src/index.js
+//Function for JSON
+export async function loadConfig() {
+    const response = await fetch('./src/config/json');
+    const config = await response.json();
+    return config;
+}
 
 // Create and append an H1 element
 const helloworld = document.createElement('h1');
@@ -157,6 +162,9 @@ export async function getForecast(lat, lon) {
         `;
         forecastContainer.innerHTML += forecastDay;
     });
+
+    //json stuff save forcast to json
+    localStorage.setItem('forcastData', JSON.stringify(data));
 
     // Make forecast container visible
     document.getElementById('forecastContainer').classList.remove('hidden');

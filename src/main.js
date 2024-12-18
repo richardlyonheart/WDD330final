@@ -1,6 +1,17 @@
 // src/main.js
 
-import { initMap, incrementCounter, displayCounter, getWeather, getWeatherByLocation, getWeatherByLatLon, toggleTacticalMode } from './index.js';
+import { initMap, incrementCounter, displayCounter, getWeather, getWeatherByLocation, getWeatherByLatLon, toggleTacticalMode, loadConfig } from './index.js';
+
+//config for JSON
+loadConfig().then(config => {
+    const { lat , lon } = config.defaultlocation;
+    initMap(lat, lon);
+
+    const savedForcastedData = localStorage.getItem('forcastData');
+    if (savedForcastData){
+        displaySavedForcast(JSON.parse(savedForcastedData));
+    }
+});
 
 // Hide the map initially
 document.getElementById('mapContainer').classList.add('hidden');
@@ -57,3 +68,18 @@ document.getElementById('tacticalModeToggle').addEventListener('click', () => {
 document.getElementById('resetButton').addEventListener('click', () => {
     location.reload();
 });
+//function display forcasted data for no internet
+function displaySavedForcast(data){
+    const forecastContainer = document.getElementById('forcast');
+    forecastContainer.innerHTML = '';
+    data.list.slice(0,5).forEach(forcast => {
+        const forcastDay = `
+        <div class = "forcast-day">
+            <p>${new Date(forecast.dt * 1000).toLocaleDateString()}</p>
+            <p>Temp: ${forcast.main.temp} °F</p>
+            <p>Weather: ${forcast.weather[0].description}</p>
+        </div> `;
+        forecastContainer.innerHTML += forcastDay;
+    });
+    document.getElementById('forcastContainer').classList.remove('hidden');
+}
