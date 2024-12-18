@@ -11,6 +11,9 @@
 <body>
     <div id="root"></div>
     <div id="app">
+        <div class="container"> 
+            <button id="resetButton">Reset</button> 
+        </div>
         <div id="locationDisplayContainer" class="hidden">
             <h2 id="locationDisplay"></h2>
         </div>
@@ -21,13 +24,13 @@
             <div id="weather">
                 <h1>Current Weather</h1>
                 <div class="inputs-container">
-                    <input type="text" id="location" placeholder="Enter location">
+                    <input type="text" id="location" placeholder="Enter city">
                     <button id="getWeatherButton">Get Weather</button>
                     <button id="getWeatherByLocationButton">Use My Location</button>
                 </div>
                 <div class="inputs-container hidden" id="latLonInputs">
-                    <input type="text" id="latitude" placeholder="Enter latitude">
-                    <input type="text" id="longitude" placeholder="Enter longitude">
+                    <input type="text" id="latitude" placeholder="043.860">
+                    <input type="text" id="longitude" placeholder="-111.7897">
                     <button id="getWeatherByLatLonButton">Get Weather by Lat/Lon</button>
                 </div>
                 <div id="result"></div>
@@ -46,6 +49,8 @@
                 <div id="precipitation"></div>
             </div>
         </div>
+        <div id="mapContainer" class="hidden">
         <div id="map" style="width: 100%; height: 400px;"></div>
+        </div>
 </body>
 </html>
